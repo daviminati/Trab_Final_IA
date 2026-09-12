@@ -37,3 +37,20 @@
 * **Embedding de Token (Token Embedding):** Camada de mapeamento que converte um Token ID discreto em um vetor denso e contínuo de dimensão fixa ($d_{emb}$), capaz de capturar relações semânticas.
 * **Embedding Positional (Positional Embedding):** Vetor denso somado ao embedding do token para codificar a ordem ou posição ordinal do token na sequência, compensando a invariância posicional da atenção.
 * **Tamanho do Contexto (Context Length):** Quantidade máxima de tokens que o modelo consegue processar simultaneamente em uma única passada pela rede.
+
+## Capítulo 3: Codificação de Mecanismos de Atenção (Coding Attention Mechanisms)
+
+* **Mecanismo de Atenção (Attention Mechanism):** Componente central da arquitetura Transformer que permite ao modelo estabelecer relações dinâmicas e ponderadas entre diferentes tokens de uma sequência, capturando dependências contextuais de longo alcance independentemente da distância entre eles.
+* **Self-Attention (Autoatenção):** Mecanismo de atenção em que cada token da sequência interage e calcula pontuações de relevância com todos os outros tokens da mesma sequência, permitindo a construção de representações contextuais ricas.
+* **Scaled Dot-Product Attention (Atenção por Produto Escalar com Escala):** Formulação matemática específica para calcular os pesos de atenção utilizando o produto escalar entre vetores de consulta (*Query*) e chave (*Key*), dividido pela raiz quadrada da dimensão dos embeddings ($\sqrt{d_k}$) para estabilizar os gradientes durante o treinamento.
+* **Query (Consulta - $Q$):** Vetor de representação que atua como o elemento ativo no cálculo da atenção, representando o token atual que está "procurando" por informações relevantes em outros tokens.
+* **Key (Chave - $K$):** Vetor de representação associado a cada token da sequência, utilizado para ser comparado com as consultas (*Queries*) através de produto escalar, determinando o grau de alinhamento ou relevância.
+* **Value (Valor - $V$):** Vetor de representação que contém o conteúdo informativo real do token; após a ponderação pelos pesos de atenção, os valores são somados para produzir a saída contextualizada.
+* **Causal Attention (Atenção Causal / Masked Attention):** Variante do mecanismo de atenção utilizada em modelos geradores baseados em *Decoder* (como o GPT), que aplica uma máscara triangular superior para impedir que tokens futuros influenciem tokens passados, preservando a natureza autorregressiva da geração de texto.
+* **Máscara Causal (Causal Mask):** Matriz de mascaramento com valores infinitos negativos (ou zeros após a função softmax) aplicada antes do cálculo da atenção para zerar a probabilidade de conexões com tokens futuros.
+* **Multi-Head Attention (Atenção Multi-Cabeça):** Extensão do mecanismo de atenção que executa múltiplos cálculos de atenção em paralelo (várias "cabeças"), permitindo que o modelo foque simultaneamente em diferentes subespaços de representação e tipos de relações contextuais (ex: sintáticas e semânticas).
+* **Dimensão do Embedding ($d_{emb}$ / Output Dimension):** Tamanho ou número de dimensões dos vetores densos que representam cada token no espaço vetorial contínuo da rede neural.
+* **Número de Heads ($h$):** Quantidade de subespaços paralelos independentes em uma camada de *Multi-Head Attention*, dividindo a dimensão total do embedding de forma proporcional.
+* **Dimensão da Head ($d_h$):** A dimensionalidade de cada cabeça de atenção individual, calculada tipicamente como a dimensão total do embedding dividida pelo número de heads ($d_h = d_{emb} / h$).
+* **Matriz de Atenção (Attention Matrix / Attention Weights):** Matriz estocástica resultante da aplicação da função *softmax* sobre as pontuações de atenção normalizadas, cujas linhas somam 1 e indicam o peso relativo que cada token atribui aos demais.
+(Autor: Elian Duarte)
