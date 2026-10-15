@@ -54,3 +54,15 @@
 * **Dimensão da Head ($d_h$):** A dimensionalidade de cada cabeça de atenção individual, calculada tipicamente como a dimensão total do embedding dividida pelo número de heads ($d_h = d_{emb} / h$).
 * **Matriz de Atenção (Attention Matrix / Attention Weights):** Matriz estocástica resultante da aplicação da função *softmax* sobre as pontuações de atenção normalizadas, cujas linhas somam 1 e indicam o peso relativo que cada token atribui aos demais.
 (Autor: Elian Duarte)
+
+## Capítulo 4: Implementando um Modelo GPT do Zero para Gerar Texto
+
+* **Bloco Transformer (Transformer Block):** Módulo fundamental e recorrente na arquitetura GPT que combina mecanismos de atenção (*Multi-Head Attention*), redes neurais feed-forward, normalização de camada e conexões residuais.
+* **Normalização de Camada (LayerNorm / Layer Normalization):** Técnica de normalização aplicada aos recursos ou ativações de uma camada neural para ajustar sua média para 0 e variância para 1, estabilizando o treinamento.
+* **Conexões Residuais / Atalhos (Residual Connections / Shortcut Connections):** Mecanismo que adiciona diretamente a entrada de um bloco ou camada à sua saída, facilitando o fluxo de gradientes em redes profundas.
+* **Rede Neural Feed-Forward (Feed Forward Network - FFN):** Sub-rede totalmente conectada composta por duas camadas lineares separadas por ativação não linear, expandindo a dimensionalidade para enriquecer as representações.
+* **GELU (Gaussian Error Linear Unit):** Função de ativação suave e não linear que pondera os inputs com base em sua magnitude, permitindo gradientes suaves para valores negativos.
+* **Dropout:** Técnica de regularização que desativa aleatoriamente uma fração dos neurônios durante o treinamento para prevenir o sobreajuste (*overfitting*).
+* **Logits:** Vetores de pontuações brutas e não normalizadas geradas na última camada linear do modelo para cada token da sequência.
+* **Cabeça de Modelo de Linguagem (Language Model Head):** Camada linear final da arquitetura que mapeia a representação vetorial oculta de volta para o espaço dimensional do vocabulário do tokenizer.
+* **Inferência e Geração Autorregressiva (Autoregressive Generation):** Processo sequencial em que o modelo prevê um token por vez e alimenta a saída de volta à entrada para gerar texto coerente.
