@@ -66,3 +66,13 @@
 * **Logits:** Vetores de pontuações brutas e não normalizadas geradas na última camada linear do modelo para cada token da sequência.
 * **Cabeça de Modelo de Linguagem (Language Model Head):** Camada linear final da arquitetura que mapeia a representação vetorial oculta de volta para o espaço dimensional do vocabulário do tokenizer.
 * **Inferência e Geração Autorregressiva (Autoregressive Generation):** Processo sequencial em que o modelo prevê um token por vez e alimenta a saída de volta à entrada para gerar texto coerente.
+
+## Glossário do Capítulo 5: Treinamento, Avaliação e Geração de Texto
+
+* **Cross-Entropy Loss (Perda de Entropia Cruzada):** Função de custo que mede a divergência entre a distribuição de probabilidade prevista pelos *logits* e os tokens reais alvo. No treinamento, ela avalia o erro global do modelo comparando o vocabulário previsto pelo *LM Head* com os rótulos corretos do texto.
+* **Perplexity (Perplexidade):** Métrica interpretável baseada na exponencial da perda de entropia cruzada ($e^{\text{loss}}$). Indica o grau de incerteza do modelo na predição; quanto menor a perplexidade, melhor o modelo prevê o próximo token.
+* **Otimizador (AdamW):** Algoritmo de otimização que atualiza os pesos da rede com base nos gradientes calculados via *backpropagation*, utilizando decaimento de peso desacoplado. Sua função é ajustar os parâmetros dos *Transformer Blocks* e *Embeddings* para minimizar a perda.
+* **Data Loader de Treino e Validação:** Estruturas que fornecem lotes (*batches*) sequenciais de dados em formato de janelas deslizantes. Alimentam o modelo com pares de entrada ($x$) e alvos ($y$) extraídos do corpus de texto.
+* **Decodificação por Temperatura (Temperature Scaling):** Técnica que divide os *logits* por um fator $T$ antes do *Softmax*, controlando a aleatoriedade das previsões. Temperaturas baixas geram textos determinísticos, enquanto temperaturas altas aumentam a diversidade e criatividade.
+* **Top-k Sampling:** Estratégia de filtragem que restringe a amostragem apenas aos $k$ tokens com maiores probabilidades. Elimina previsões de probabilidade desprezível geradas pelo modelo, mantendo o texto coerente.
+* **State Dict (Checkpointing):** Dicionário em PyTorch que armazena todos os tensores de pesos aprendidos pelo modelo. Permite salvar o estado treinado em disco (`.pth`) para retomada posterior de inferência ou fine-tuning.
